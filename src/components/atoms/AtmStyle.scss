@@ -1,0 +1,83 @@
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // pulse animation
+    animation: pulse 1.5s infinite;
+    .ficha{
+        margin-bottom: 1rem;
+    }
+
+
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+    }
+
+    70% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.95);
+    }
+}
+
+.ficha {
+    width: 60px;
+    height: 60px;
+   
+}
+
+.atm-input {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    min-width: 250px;
+    color:white;
+    label {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    input{
+        border: #BB65FF 1px solid;
+        border-radius: 30px;
+        background-color: transparent;
+        padding-inline: 20px ;
+        padding-block: 13px;
+        color: white;
+        font-weight: 300;
+        font-size: 18px;
+    }
+
+}
+
+.atm-button{
+    color : #330072;
+    background-color: white;
+    border:none;
+    border-radius: 30px;
+    padding-inline: 24px ;
+    padding-block: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    align-self: center;
+    cursor: pointer;
+    &:disabled {
+        opacity: 0.5; // Puedes ajustar la opacidad o aplicar otros estilos
+        cursor: not-allowed; // Cambiar el cursor cuando el botón está desactivado
+      }
+}
+
+
+.atm-duo-radio {
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+  }
+  
+// 
+
