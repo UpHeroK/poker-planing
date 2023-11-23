@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import AtmLogo from '../atoms/AtmLogo';
 import OrgForm from '../organisms/OrgForm';
 import OrgHeader from '../organisms/Orgheader';
 
 function NewGame() {
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -13,6 +15,11 @@ function NewGame() {
 
         return () => clearTimeout(timer);
     }, []);
+
+    const handleSubmit = () => {
+         navigate("/game");
+    }
+    
 
     return (
         <div>
@@ -25,7 +32,8 @@ function NewGame() {
                <OrgHeader description='Crear partida' />
                 <OrgForm label='Nombra la partida'
                 content='Crear partida'
-                radio={false}/>
+                radio={false}
+                onSubmit={handleSubmit}/>
                </>
             )}
         </div>

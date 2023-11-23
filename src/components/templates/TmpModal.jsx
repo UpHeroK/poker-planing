@@ -1,19 +1,26 @@
-import React from 'react';
+  import React from 'react';
 
-const TmpModal = ({ isOpen, onClose, content: ContentComponent, componentProps }) => {
-  return (
-    <>
-      {isOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <div className="modal-body">
-              {ContentComponent && <ContentComponent {...componentProps} />}
+  const TmpModal = ({ isOpen, onClose, content: ContentComponent, componentProps }) => {
+
+    const closeModal = () => {
+      onClose();
+    }
+
+
+    return (
+      <>
+        {isOpen && (
+          <div className="modal">
+            <div className="modal-content">
+              <div className="modal-body">
+                {ContentComponent && <ContentComponent
+                onSubmit={closeModal}  {...componentProps} />}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </>
-  );
-};
+        )}
+      </>
+    );
+  };
 
-export default TmpModal;
+  export default TmpModal;

@@ -73,10 +73,31 @@
 }
 
 
-.atm-duo-radio {
+
+  
+
+  .atm-duo-radio {
     display: flex;
     justify-content: space-evenly;
     color: white;
+  }
+  
+  .custom-radio {
+    margin-left: 5px; /* Ajusta el espacio entre el texto y el radio */
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #BB65FF; /* Color morado */
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    vertical-align: bottom; /* Alinea verticalmente el radio con el texto */
+  }
+  
+  .custom-radio:checked {
+    background: #BB65FF; /* Color morado */
+    box-shadow: inset 0 0 0 3px #1F0D3F; /* Crear un "punto" en el centro del círculo */
   }
   
 // 
