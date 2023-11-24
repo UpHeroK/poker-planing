@@ -27,7 +27,7 @@
         font-size: x-large;
         gap: 1rem;
         align-items: center;
-        min-width: 250px;
+        min-width: 278px;
     }
 
     .title-header {
@@ -54,7 +54,7 @@
         display: flex;
         gap: 1rem;
         align-items: center;
-        min-width: 250px;
+        min-width: 278px;
 
     }
 
@@ -117,15 +117,68 @@
         margin-top: 7px;
     }
 
-    .player{
-        width: 38px;
-        height: 70px;
+
+}
+@keyframes colorChange {
+    0% {
+        background-color: #26104d;
+    }
+    0% {
+        background-color: #bcb6c1
+    }
+    100% {
         background-color: #BB65FF;
-        border-radius: 7px;
-        box-shadow: 0px 0px 5px 0px #BB65FF;
-        
-        
     }
 }
 
+.player {
+    width: 38px;
+    color: white;
+    height: 70px;
+    background-color: #26104d;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px 0px #BB65FF;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.25s ease-in-out;
+}
+
+.player:hover {
+    transform: translate(0px, -5px);
+    animation: colorChange 0.25s ease-in; /* Ajusta la duración según tus preferencias */
+    background-color: #BB65FF;
+    color: #26104d;
+}
+.deck-container{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 1rem;
+
+    p{
+        margin-top: 0px;
+        margin-bottom: 18px;
+        text-align: center;
+        color: white;
+        font-size: larger;
+    }
+
+
+}
+
+.deck-of-cards{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+
+}
 

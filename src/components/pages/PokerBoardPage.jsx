@@ -3,24 +3,38 @@ import { useState } from 'react';
 import OrgHeader from '../organisms/Orgheader';
 import TmpModal from '../templates/TmpModal';
 import OrgForm from '../organisms/OrgForm';
+import OrgDeck from '../organisms/OrgDeck';
+import OrgFormCopy from '../organisms/OrgFormCopy';
 
 
 
 const PokerBoard = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalCopyOpen, setisModalCopyOpen] = useState(false);
 
-  const HandleModal = () => {
+  const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const HandleModalCopy = () => {
+    setisModalCopyOpen(true);
+  };
+
+  const closeCopyModal = () => {
+    setisModalCopyOpen(false);
+  }
+
 
 
 
   return (
     <>
-      <OrgHeader title='Sprint 21' content='Invitar jugador' player='T1' />
-      <TmpModal content={OrgForm} isOpen={isModalOpen} onClose={HandleModal}
+      <OrgHeader title='Sprint 21' content='Invitar jugadores' player='T1' openModal={HandleModalCopy}/>
+      <TmpModal content={OrgForm} isOpen={isModalOpen} onClose={closeModal}
         componentProps={{ label: 'Tu nombre', content: 'Continuar', radio: true }} />
+      <TmpModal isOpen={isModalCopyOpen} header={true} onClose={closeCopyModal} headerContent={'invitar jugadores'}
+                content={OrgFormCopy} componentProps={{content: 'Copiar link'}} />
 
       <div className="poker-table">
         <div className="cell"></div>
@@ -73,6 +87,8 @@ const PokerBoard = () => {
         </div>
         <div className="cell "></div>
       </div>
+
+      <OrgDeck />
 
 
 

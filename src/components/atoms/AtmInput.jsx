@@ -1,9 +1,12 @@
 
 import React from 'react';
 
-const AtmInput = ({ label, value, onChange, required }) => {
+const AtmInput = ({ label, value, onChange, required , disabled, inputRef, customStyle }) => {
+
+  const inputClassName = customStyle ? 'atm-input-secundary' : 'atm-input-primary';
+
   return (
-    <div className='atm-input'>
+    <div className={inputClassName}>
       <label>{label}</label>
       <input 
       type="text"
@@ -11,7 +14,9 @@ const AtmInput = ({ label, value, onChange, required }) => {
       maxLength='20'
       value={value} 
       onChange={onChange}
-      required={required} />
+      required={required}
+      ref={inputRef}
+      disabled={disabled} />
     </div>
   );
 };

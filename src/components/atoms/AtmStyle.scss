@@ -32,7 +32,7 @@
    
 }
 
-.atm-input {
+.atm-input-primary {
     display: flex;
     flex-direction: column;
     width: 300px;
@@ -53,6 +53,62 @@
         font-size: 18px;
     }
 
+} 
+.atm-input-secundary {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    color:white;
+    label {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    input{
+        border: #BB65FF 1px solid;
+        border-radius: 30px;
+        background-color: transparent;
+        padding-inline: 20px ;
+        padding-block: 13px;
+        color: white;
+        font-weight: 300;
+        font-size: 18px;
+    }
+
+} 
+
+
+
+.atm-button-primary{
+    color : #330072;
+    background-color: white;
+    border:none;
+    border-radius: 30px;
+    padding-inline: 24px ;
+    padding-block: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    align-self: center;
+    cursor: pointer;
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+}
+.atm-button-secundary{
+    color : white;
+    background-color: #26104d ;
+    border: 2px solid white;
+    border-radius: 30px;
+    padding-inline: 24px ;
+    padding-block: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    align-self: center;
+    cursor: pointer;
+    &:disabled {
+        opacity: 0.5; 
+        cursor: not-allowed; 
+      }
 }
 
 .atm-button{
@@ -67,8 +123,8 @@
     align-self: center;
     cursor: pointer;
     &:disabled {
-        opacity: 0.5; // Puedes ajustar la opacidad o aplicar otros estilos
-        cursor: not-allowed; // Cambiar el cursor cuando el botón está desactivado
+        opacity: 0.5;
+        cursor: not-allowed;
       }
 }
 
@@ -83,21 +139,21 @@
   }
   
   .custom-radio {
-    margin-left: 5px; /* Ajusta el espacio entre el texto y el radio */
+    margin-left: 5px;
     appearance: none;
     width: 18px;
     height: 18px;
-    border: 2px solid #BB65FF; /* Color morado */
+    border: 2px solid #BB65FF; 
     border-radius: 50%;
     outline: none;
     cursor: pointer;
     position: relative;
-    vertical-align: bottom; /* Alinea verticalmente el radio con el texto */
+    vertical-align: bottom;
   }
   
   .custom-radio:checked {
-    background: #BB65FF; /* Color morado */
-    box-shadow: inset 0 0 0 3px #1F0D3F; /* Crear un "punto" en el centro del círculo */
+    background: #BB65FF; 
+    box-shadow: inset 0 0 0 3px #1F0D3F;
   }
   
 // 

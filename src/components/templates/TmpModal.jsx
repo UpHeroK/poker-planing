@@ -1,26 +1,37 @@
-  import React from 'react';
+import React from 'react';
+import crossClose from '../../assets/close.svg';
+const TmpModal = ({ header, headerContent, isOpen, onClose, content: ContentComponent, componentProps }) => {
 
-  const TmpModal = ({ isOpen, onClose, content: ContentComponent, componentProps }) => {
-
-    const closeModal = () => {
-      onClose();
-    }
+  const closeModal = () => {
+    onClose();
+  }
 
 
-    return (
-      <>
-        {isOpen && (
+  return (
+    <>
+      {isOpen && (
+        <div className="modal-overlay">
           <div className="modal">
+            {header &&
+              (<div className="modal-header">
+                <p>{headerContent}</p>
+                <img className='cross-close' src={crossClose} alt="close" onClick={closeModal} />
+              </div>)
+            }
+
             <div className="modal-content">
+
               <div className="modal-body">
                 {ContentComponent && <ContentComponent
-                onSubmit={closeModal}  {...componentProps} />}
+                  onSubmit={closeModal}  {...componentProps} />}
               </div>
             </div>
           </div>
-        )}
-      </>
-    );
-  };
+        </div>
 
-  export default TmpModal;
+      )}
+    </>
+  );
+};
+
+export default TmpModal;
