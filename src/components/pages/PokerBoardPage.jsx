@@ -1,39 +1,47 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import OrgHeader from '../organisms/Orgheader';
 import TmpModal from '../templates/TmpModal';
 import OrgForm from '../organisms/OrgForm';
 import OrgDeck from '../organisms/OrgDeck';
 import OrgFormCopy from '../organisms/OrgFormCopy';
 import AtmButton from '../atoms/AtmButton';
-
-
+import OrgCardsSelections from '../organisms/OrgCardsSelections';
 
 const PokerBoard = () => {
-
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isModalCopyOpen, setisModalCopyOpen] = useState(false);
   const [game, setGame] = useState('');
   const [selectedCard, setSelectedCard] = useState(null);
   const [gameStarted, setGameStarted] = useState(true);
-  const [playersCards, setPlayersCards] = useState([1, 2, 3, 5, 8, 5, null, 5]); 
+  const [playersCards, setPlayersCards] = useState([1, 2, 3, 5, 8, 5, null, 5]);
   const [showCards, setShowCards] = useState(false);
   const [averageCard, setAverageCard] = useState(null);
+  const [resetKey, setResetKey] = useState(0);
+  const [cardSelections, setCardSelections] = useState({});
 
   useEffect(() => {
     const storedGame = localStorage.getItem('game');
     setGame(storedGame || '');
   }, []);
 
-
   useEffect(() => {
     const allPlayersSelectedCard = playersCards.every((card) => card !== null);
 
-    if (allPlayersSelectedCard) {
-      console.log('Todos los jugadores han seleccionado una carta');
+    if (allPlayersSelectedCard && gameStarted) {
+      // Realizar el seguimiento de las selecciones de cartas
+      const updatedCardSelections = { ...cardSelections };
 
+      playersCards.forEach((card) => {
+        if (card !== null) {
+          updatedCardSelections[card] = (updatedCardSelections[card] || 0) + 1;
+        }
+      });
+
+      setCardSelections(updatedCardSelections);
+      console.log('Selecciones de cartas:', updatedCardSelections);
     }
-  }, [playersCards]);
+  }, [playersCards, gameStarted]);
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -44,46 +52,42 @@ const PokerBoard = () => {
 
   const closeCopyModal = () => {
     setisModalCopyOpen(false);
-  }
+  };
+
   const handleCardSelect = (card) => {
     if (gameStarted) {
       const playersLength = playersCards.length;
       setPlayersCards((prevPlayersCards) => [
         ...prevPlayersCards.slice(0, playersLength - 2),
         card,
-        ...prevPlayersCards.slice(playersLength - 1)
+        ...prevPlayersCards.slice(playersLength - 1),
       ]);
       setSelectedCard(card);
       console.log(playersCards);
-
     }
   };
-
-
 
   const handleRevealCards = () => {
     setShowCards(true);
     setGameStarted(false);
+    setResetKey(resetKey + 1);
 
     const filteredCards = playersCards.filter((card) => card !== null);
     const sum = filteredCards.reduce((acc, card) => acc + card, 0);
     const average = sum / filteredCards.length;
-    
+
     setAverageCard(Number(average.toFixed(1)));
+
   };
 
-
-
-    const handleNewVote = () => {
-      setShowCards(false);
-      setGameStarted(true);
-      setSelectedCard(null); 
-      setPlayersCards([1, 2, 3, 5, 8, 5, null, 5]);
-      setAverageCard(null);
-     
-    };
-
-
+  const handleNewVote = () => {
+    setShowCards(false);
+    setGameStarted(true);
+    setSelectedCard(null);
+    setPlayersCards([1, 2, 3, 5, 8, 5, null, 5]);
+    setAverageCard(null);
+    setCardSelections({});
+  };
 
   return (
     <>
@@ -97,17 +101,17 @@ const PokerBoard = () => {
         <div className="cell"></div>
         <div className="cell spot">
           <div className='card'>
-          <div className={`player ${playersCards[0] !== null && gameStarted ? 'selected' : ''}`}>
+            <div className={`player ${playersCards[0] !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? playersCards[0] : ''}</div>
             <p>play1</p>
           </div>
           <div className='card'>
-          <div className={`player ${playersCards[1] !== null && gameStarted ? 'selected' : ''}`}>
-            {showCards ? playersCards[1] : ''}</div>
+            <div className={`player ${playersCards[1] !== null && gameStarted ? 'selected' : ''}`}>
+              {showCards ? playersCards[1] : ''}</div>
             <p>play2</p>
           </div>
           <div className='card'>
-          <div className={`player ${playersCards[2] !== null && gameStarted ? 'selected' : ''}`}>
+            <div className={`player ${playersCards[2] !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? playersCards[2] : ''}</div>
             <p>play3</p>
           </div>
@@ -115,7 +119,7 @@ const PokerBoard = () => {
         <div className="cell "></div>
         <div className="cell spot">
           <div className='card'>
-          <div className={`player ${playersCards[3] !== null && gameStarted ? 'selected' : ''}`}>
+            <div className={`player ${playersCards[3] !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? playersCards[3] : ''}</div>
             <p>play4</p>
           </div>
@@ -134,7 +138,7 @@ const PokerBoard = () => {
         </div>
         <div className="cell spot">
           <div className='card'>
-          <div className={`player ${playersCards[4] !== null && gameStarted ? 'selected' : ''}`}>
+            <div className={`player ${playersCards[4] !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? playersCards[4] : ''}</div>
             <p>play5</p>
           </div>
@@ -142,17 +146,17 @@ const PokerBoard = () => {
         <div className="cell "></div>
         <div className="cell spot bottom">
           <div className='card'>
-          <div className={`player ${playersCards[5] !== null && gameStarted ? 'selected' : ''}`}>
+            <div className={`player ${playersCards[5] !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? playersCards[5] : ''}</div>
             <p>play6</p>
           </div>
           <div className='card'>
-          <div className={`player ${selectedCard !== null && gameStarted ? 'selected' : ''}`}>
+            <div className={`player ${selectedCard !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? selectedCard : ''}</div>
             <p>play7</p>
           </div>
           <div className='card'>
-          <div className={`player ${playersCards[7] !== null && gameStarted ? 'selected' : ''}`}>
+            <div className={`player ${playersCards[7] !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? playersCards[7] : ''}</div>
             <p>play8</p>
           </div>
@@ -160,9 +164,18 @@ const PokerBoard = () => {
         <div className="cell "></div>
       </div>
 
+      {showCards && (
+        <OrgCardsSelections cardSelections={cardSelections} averageCard={averageCard} />
+      )}
 
-      <OrgDeck onCardSelect={handleCardSelect} averageCard = {averageCard} />
-
+      {gameStarted && !showCards && (
+        <OrgDeck
+          onCardSelect={handleCardSelect}
+          averageCard={averageCard}
+          resetKey={resetKey}
+          cardValues={[0, 1, 3, 5, 8, 13, 21, 34, 55, 89, '?', '☕']}
+        />
+      )}
 
 
     </>
