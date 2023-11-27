@@ -17,6 +17,8 @@ function NewGame() {
     }, []);
 
     const handleSubmit = () => {
+        const newGame = event.target[0].value
+        localStorage.setItem('game', newGame);
          navigate("/game");
     }
     

@@ -97,6 +97,9 @@
         position: absolute;
         z-index: 3;
         border-radius: 7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .spot{
         display: flex;
@@ -145,6 +148,7 @@
     flex-direction: column;
     justify-content: center;
     transition: all 0.25s ease-in-out;
+    cursor: pointer;
 }
 
 .player:hover {
@@ -153,6 +157,18 @@
     background-color: #BB65FF;
     color: #26104d;
 }
+
+.selected{
+    animation: colorChange 0.25s ease-in !important;/* Ajusta la duración según tus preferencias */
+    background-color: #BB65FF !important;
+    box-shadow: 0px 0px 5px 0px #BB65FF !important;
+    transition: all 0.25s ease-in-out !important;
+}
+
+.elevate{
+    transform: translate(0px, -5px);
+}
+
 .deck-container{
     display: flex;
     flex-direction: column;
@@ -182,3 +198,10 @@
 
 }
 
+.result{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}

@@ -1,29 +1,37 @@
+import React, { useState } from "react";
 
-import React from "react";
+const OrgDeck = ({ onCardSelect, averageCard }) => {
+  const [selectedCard, setSelectedCard] = useState(null);
 
-const OrgDeck = () => {
- 
-    return (
-     <>
-     <div className="deck-container">
-        <p>Elije una carta 👇</p>
-        <div className="deck-of-cards">
-            <div className="player">0</div>
-            <div className="player">1</div>
-            <div className="player">3</div>
-            <div className="player">5</div>
-            <div className="player">8</div>
-            <div className="player">13</div>
-            <div className="player">21</div>
-            <div className="player">34</div>
-            <div className="player">55</div>
-            <div className="player">89</div>
-            <div className="player">?</div>
-            <div className="player">☕</div>
+  const handleCardClick = (cardValue) => {
+    // Cambiar la carta seleccionada
+    setSelectedCard(cardValue);
+
+    // Enviar el valor de la carta al componente padre
+    onCardSelect(cardValue);
+  };
+
+  return (
+    <div className="deck-container">
+      <p>Elije una carta 👇</p>
+      <div className="deck-of-cards">
+        {[0, 1, 3, 5, 8, 13, 21, 34, 55, 89, '?', '☕'].map((cardValue, index) => (
+          <div
+            key={index}
+            className={`player ${selectedCard === cardValue ? 'selected elevate' : ''}`}
+            onClick={() => handleCardClick(cardValue)}
+          >
+            {cardValue}
+          </div>
+        ))}
+      </div>
+       {averageCard && (
+        <div className="result">
+          <p>Carta promedio: {averageCard}</p>
         </div>
-     </div>
-     </>
-    );
+       )}
+    </div>
+  );
 };
 
 export default OrgDeck;

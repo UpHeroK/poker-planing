@@ -10,11 +10,7 @@ const OrgForm = ({label, content , radio, onSubmit }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onSubmit(); 
-        //   now redirect to the next page
-       
       };
-
-
 
     return (
         <form className="org-form" onSubmit={handleSubmit}>
