@@ -7,13 +7,11 @@ const AtmInput = ({ label, value, onChange, required, disabled, inputRef, custom
   const handleChange = (event) => {
     const inputValue = event.target.value;
 
-    // Validación de longitud entre 5 y 20 caracteres
     if (inputValue.length < 5 || inputValue.length > 20) {
       setValidationMessage('La longitud debe estar entre 5 y 20 caracteres.');
     } else if (/[_.*#/-]/.test(inputValue)) {
       setValidationMessage('No se permiten caracteres especiales (_.*#/-).');
     } else {
-      // Validación de máximo 3 números y no solo números
       const numericCount = (inputValue.match(/[0-9]/g) || []).length;
       if (numericCount > 3 || /^\d+$/.test(inputValue)) {
         setValidationMessage('Máximo 3 números permitidos y no solo números.');

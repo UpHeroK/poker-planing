@@ -11,14 +11,22 @@ const OrgFormCopy = ({ label, content }) => {
     };
 
     const handleCopyToClipboard = () => {
-        event.preventDefault();
-        inputRef.current.select();
-        inputRef.current.setSelectionRange(0, 99999);
-
-        document.execCommand("copy");
-
-        alert("Texto copiado: " + inputRef.current.value);
+        try {
+            event.preventDefault();
+            inputRef.current.select();
+            navigator.clipboard.writeText(inputRef.current.value)
+                .then(() => {
+                    alert("Texto copiado: " + inputRef.current.value);
+                })
+                .catch((err) => {
+                    alert("No se pudo copiar al portapapeles");
+                });
+        } catch (err) {
+            console.error("Error al intentar copiar al portapapeles:", err);
+        }
     };
+
+
 
     return (
         <form className="org-form">

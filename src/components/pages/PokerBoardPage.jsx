@@ -6,6 +6,7 @@ import OrgDeck from '../organisms/OrgDeck';
 import OrgFormCopy from '../organisms/OrgFormCopy';
 import AtmButton from '../atoms/AtmButton';
 import OrgCardsSelections from '../organisms/OrgCardsSelections';
+import circulos from'../../assets/circulos.svg'   
 
 const PokerBoard = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -18,6 +19,8 @@ const PokerBoard = () => {
   const [averageCard, setAverageCard] = useState(null);
   const [resetKey, setResetKey] = useState(0);
   const [cardSelections, setCardSelections] = useState({});
+  const [countingVotes, setCountingVotes] = useState(false);
+  const [PlayerName, setPlayerName] = useState('Jhon Doe');
 
   useEffect(() => {
     const storedGame = localStorage.getItem('game');
@@ -27,8 +30,7 @@ const PokerBoard = () => {
   useEffect(() => {
     const allPlayersSelectedCard = playersCards.every((card) => card !== null);
 
-    if (allPlayersSelectedCard && gameStarted) {
-      // Realizar el seguimiento de las selecciones de cartas
+    if (allPlayersSelectedCard && showCards) {
       const updatedCardSelections = { ...cardSelections };
 
       playersCards.forEach((card) => {
@@ -68,16 +70,20 @@ const PokerBoard = () => {
   };
 
   const handleRevealCards = () => {
-    setShowCards(true);
-    setGameStarted(false);
-    setResetKey(resetKey + 1);
+    setCountingVotes(true);
 
-    const filteredCards = playersCards.filter((card) => card !== null);
-    const sum = filteredCards.reduce((acc, card) => acc + card, 0);
-    const average = sum / filteredCards.length;
+    setTimeout(() => {
+      setShowCards(true);
+      setGameStarted(false);
+      setResetKey(resetKey + 1);
 
-    setAverageCard(Number(average.toFixed(1)));
+      const filteredCards = playersCards.filter((card) => card !== null && card !== '?' && card !== '☕');
+      const sum = filteredCards.reduce((acc, card) => acc + card, 0);
+      const average = sum / filteredCards.length;
 
+      setAverageCard(Number(average.toFixed(1)));
+      setCountingVotes(false);
+    }, 1000);
   };
 
   const handleNewVote = () => {
@@ -91,7 +97,7 @@ const PokerBoard = () => {
 
   return (
     <>
-      <OrgHeader title={game || 'Sprint 21'} content='Invitar jugadores' player='T1' openModal={HandleModalCopy} />
+      <OrgHeader title={game || 'Sprint 21'} content='Invitar jugadores' player={`${PlayerName.substring(0, 2).toUpperCase()}`} openModal={HandleModalCopy} />
       <TmpModal content={OrgForm} isOpen={isModalOpen} onClose={closeModal}
         componentProps={{ label: 'Tu nombre', content: 'Continuar', radio: true }} />
       <TmpModal isOpen={isModalCopyOpen} header={true} onClose={closeCopyModal} headerContent={'invitar jugadores'}
@@ -126,10 +132,17 @@ const PokerBoard = () => {
         </div>
         <div className="cell center ">
           <div className="board">
-            {playersCards.every((card) => card !== null) && gameStarted && (
+          {countingVotes && (
+              <div className="vote-counting-text">
+                <img className='circle-loader' src={circulos} alt="loader-vote" />
+                <p>Contando votos...</p>
+                </div>
+            )}
+
+            {(!countingVotes && playersCards.every((card) => card !== null) && gameStarted) && (
               <AtmButton content="Revelar cartas" onClick={handleRevealCards} />
             )}
-            {!gameStarted && (
+            {(!countingVotes && !gameStarted) && (
               <AtmButton content="Nueva votación" onClick={handleNewVote} />
             )}
           </div>
@@ -153,7 +166,7 @@ const PokerBoard = () => {
           <div className='card'>
             <div className={`player ${selectedCard !== null && gameStarted ? 'selected' : ''}`}>
               {showCards ? selectedCard : ''}</div>
-            <p>play7</p>
+            <p>{PlayerName}</p>
           </div>
           <div className='card'>
             <div className={`player ${playersCards[7] !== null && gameStarted ? 'selected' : ''}`}>
