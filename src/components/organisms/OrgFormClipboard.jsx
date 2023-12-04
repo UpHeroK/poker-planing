@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import AtmInput from "../atoms/AtmInput";
 import AtmButton from "../atoms/AtmButton";
+import PropTypes from 'prop-types';
+
 
 const OrgFormClipboard = ({ label, content }) => {
     const [inputValue, setInputValue] = useState("https://poker.com/asd165as4c32168ec4as1");
@@ -18,7 +20,7 @@ const OrgFormClipboard = ({ label, content }) => {
                 .then(() => {
                     alert("Texto copiado: " + inputRef.current.value);
                 })
-                .catch((err) => {
+                .catch(() => {
                     alert("No se pudo copiar al portapapeles");
                 });
         } catch (err) {
@@ -43,5 +45,12 @@ const OrgFormClipboard = ({ label, content }) => {
         </form>
     );
 };
+
+OrgFormClipboard.propTypes = {
+    label: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+};
+
+
 
 export default OrgFormClipboard;

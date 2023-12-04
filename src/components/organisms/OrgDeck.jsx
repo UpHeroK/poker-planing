@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import AtmCard from '../atoms/AtmCard';
+import PropTypes from 'prop-types';
+
 
 const OrgDeck = ({ onCardSelect, cardValues }) => {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -27,5 +29,13 @@ const OrgDeck = ({ onCardSelect, cardValues }) => {
     </div>
   );
 };
+
+OrgDeck.propTypes = {
+  onCardSelect: PropTypes.func.isRequired,
+  cardValues: PropTypes.array.isRequired
+};
+
+
+
 
 export default OrgDeck;

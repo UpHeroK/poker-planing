@@ -2,9 +2,26 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import OrgCardsSelections from '../../components/organisms/OrgCardsSelections';
+import PropTypes from 'prop-types';
 
-jest.mock('../../components/atoms/AtmCard', () => (props) => <div data-testid="mock-atm-card">{props.cardValue}</div>);
-
+jest.mock('../../components/atoms/AtmCard', () => {
+  const MockedAtmCard = ({ cardValue, showCard, onCardClick }) => (
+    <div onClick={onCardClick}>{showCard ? cardValue : null}</div>
+  );
+  MockedAtmCard.displayName = 'MockedAtmCard';
+  MockedAtmCard.propTypes = {
+    cardValue: PropTypes.string.isRequired,
+    showCard: PropTypes.bool,
+    onCardClick: PropTypes.func
+  };
+  
+  MockedAtmCard.defaultProps = {
+    showCard: false,
+    isClickable: false,
+    onCardClick: () => {}
+  };
+  return MockedAtmCard;
+});
 describe('OrgCardsSelections', () => {
   test('renderiza AtmCard para cada selección de tarjeta', () => {
     const cardSelections = {

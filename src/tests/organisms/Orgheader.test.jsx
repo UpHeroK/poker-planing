@@ -2,9 +2,20 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import OrgHeader from '../../components/organisms/OrgHeader'; 
+import PropTypes from 'prop-types';
 
-jest.mock('../../components/atoms/AtmButton', () => ({ content, onClick }) => <button onClick={onClick}>{content}</button>);
-
+jest.mock('../../components/atoms/AtmButton', () => {
+    const MockedAtmButton = ({ content, onClick }) => <button onClick={onClick}>{content}</button>;
+    MockedAtmButton.propTypes = {
+      content: PropTypes.node.isRequired,
+      onClick: PropTypes.func
+    };
+    MockedAtmButton.defaultProps = {
+      onClick: () => {}
+    };
+    MockedAtmButton.displayName = 'MockedAtmButton';
+    return MockedAtmButton;
+  });
 describe('OrgHeader', () => {
   test('renderiza el contenido correctamente', () => {
     const props = {

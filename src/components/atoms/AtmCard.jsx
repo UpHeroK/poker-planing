@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AtmCard = ({ description, cardValue, isSelected, showCard, isVotingCard, instances, isClickable, onCardClick }) => {
   const handleClick = () => {
@@ -30,5 +31,24 @@ const AtmCard = ({ description, cardValue, isSelected, showCard, isVotingCard, i
     </div>
   );
 };
+AtmCard.propTypes = {
+  description: PropTypes.string,
+  cardValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  isSelected: PropTypes.bool,
+  showCard: PropTypes.bool,
+  isVotingCard: PropTypes.bool,
+  instances: PropTypes.number,
+  isClickable: PropTypes.bool,
+  onCardClick: PropTypes.func
+};
 
+AtmCard.defaultProps = {
+  description: '',
+  isSelected: false,
+  showCard: false,
+  isVotingCard: false,
+  instances: 0,
+  isClickable: false,
+  onCardClick: undefined
+};
 export default AtmCard;

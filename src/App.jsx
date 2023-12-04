@@ -1,9 +1,7 @@
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NewGame from './components/pages/NewGamePage';
 import PokerBoard from './components/pages/PokerBoardPage';
-
 const App = () => {
   return (
     <Router>
@@ -14,5 +12,4 @@ const App = () => {
     </Router>
   );
 };
-
 export default App;

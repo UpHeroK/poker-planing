@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const MIN_LENGTH = 5;
 const MAX_LENGTH = 20;
@@ -53,6 +54,26 @@ const AtmInput = ({ label,name, value, required, disabled, inputRef, customStyle
       {validationMessage && <p className="validation-message">{validationMessage}</p>}
     </div>
   );
+};
+
+AtmInput.propTypes = {
+  label: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  required: PropTypes.bool,
+  disabled: PropTypes.bool,
+  inputRef: PropTypes.object,
+  customStyle: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  onValidityChange: PropTypes.func.isRequired,
+  testId: PropTypes.string.isRequired
+};
+
+AtmInput.defaultProps = {
+  required: false,
+  disabled: false,
+  inputRef: null,
+  customStyle: false
 };
 
 export default AtmInput;

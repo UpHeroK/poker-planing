@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import AtmInput from "../atoms/AtmInput";
 import AtmButton from "../atoms/AtmButton";
 import AtmDuoRadio from "../atoms/AtmDuoRadio";
+import PropTypes from 'prop-types';
+
 
 const OrgForm = ({ onSubmit, label, content, radio }) => {
     const [formData, setFormData] = useState({
@@ -39,5 +41,17 @@ const OrgForm = ({ onSubmit, label, content, radio }) => {
         </form>
     );
 };
+
+OrgForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    label: PropTypes.string,
+    content: PropTypes.string,
+    radio: PropTypes.bool,
+};
+
+OrgForm.defaultProps = {
+    radio: false,
+};
+
 
 export default OrgForm;

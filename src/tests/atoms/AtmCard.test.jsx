@@ -11,7 +11,6 @@ describe('AtmCard', () => {
 
   test('se renderiza correctamente', () => {
     render(<AtmCard cardValue={cardValue} showCard={true} />);
-    screen.debug();
     expect(screen.getByText(cardValue)).toBeInTheDocument();
   });
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import AtmCard from '../atoms/AtmCard';
+import PropTypes from 'prop-types';
 
 const OrgCardsSelections = ({ cardSelections = {}, averageCard }) => {
   return (
@@ -23,6 +24,16 @@ const OrgCardsSelections = ({ cardSelections = {}, averageCard }) => {
       )}
     </div>
   );
+};
+
+OrgCardsSelections.propTypes = {
+  cardSelections: PropTypes.object,
+  averageCard: PropTypes.string
+};
+
+OrgCardsSelections.defaultProps = {
+  cardSelections: {},
+  averageCard: ''
 };
 
 export default OrgCardsSelections;

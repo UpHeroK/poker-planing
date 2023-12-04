@@ -2,6 +2,8 @@ import React from 'react';
 import circulos from '../../assets/circulos.svg';
 import AtmButton from '../atoms/AtmButton';
 import AtmCard from '../atoms/AtmCard';
+import PropTypes from 'prop-types';
+
 
 const PokerTable = ({ playersCards, showCards, gameStarted, countingVotes, handleRevealCards, handleNewVote, PlayerName, selectedCard }) => {
     const renderCard = (cardIndex, description) => {
@@ -64,6 +66,22 @@ const PokerTable = ({ playersCards, showCards, gameStarted, countingVotes, handl
             <div className="cell "></div>
         </div>
     );
+};
+
+
+PokerTable.propTypes = {
+    playersCards: PropTypes.array.isRequired,
+    showCards: PropTypes.bool.isRequired,
+    gameStarted: PropTypes.bool.isRequired,
+    countingVotes: PropTypes.bool.isRequired,
+    handleRevealCards: PropTypes.func.isRequired,
+    handleNewVote: PropTypes.func.isRequired,
+    PlayerName: PropTypes.string.isRequired,
+    selectedCard: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+};
+
+PokerTable.defaultProps = {
+    selectedCard: null
 };
 
 export default PokerTable;

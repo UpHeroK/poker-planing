@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const AtmDuoRadio = ({ onRoleChange }) => {
   const radioOptions = [
@@ -24,5 +25,10 @@ const AtmDuoRadio = ({ onRoleChange }) => {
     </div>
   );
 };
+
+AtmDuoRadio.propTypes = {
+  onRoleChange: PropTypes.func.isRequired
+};
+
 
 export default AtmDuoRadio;

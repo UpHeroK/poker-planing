@@ -1,5 +1,6 @@
 import React from 'react';
 import crossClose from '../../assets/close.svg';
+import PropTypes from 'prop-types';
 const TmpModal = ({ header, headerContent, isOpen, onClose, content: ContentComponent, componentProps }) => {
 
   const closeModal = (formData) => {
@@ -32,6 +33,23 @@ const TmpModal = ({ header, headerContent, isOpen, onClose, content: ContentComp
       )}
     </>
   );
+};
+
+TmpModal.propTypes = {
+  header: PropTypes.bool,
+  headerContent: PropTypes.string,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  content: PropTypes.func,
+  componentProps: PropTypes.object
+};
+
+TmpModal.defaultProps = {
+  header: false,
+  isOpen: false,
+  onClose: undefined,
+  content: undefined,
+  componentProps: {}
 };
 
 export default TmpModal;

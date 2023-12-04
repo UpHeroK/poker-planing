@@ -1,6 +1,7 @@
 import React from "react";
 import Ficha from '../../assets/Ficha.svg';
 import AtmButton from '../atoms/AtmButton';
+import PropTypes from 'prop-types';
 
 const OrgHeader = ({ description, title, playerName, buttonText, onButtonClick }) => {
     const playerIcon = playerName ? <div className="icon-player">{playerName}</div> : null;
@@ -19,5 +20,22 @@ const OrgHeader = ({ description, title, playerName, buttonText, onButtonClick }
         </div>
     );
 };
+
+OrgHeader.propTypes = {
+    description: PropTypes.string,
+    title: PropTypes.string,
+    playerName: PropTypes.string,
+    buttonText: PropTypes.string,
+    onButtonClick: PropTypes.func
+};
+
+OrgHeader.defaultProps = {
+    description: '',
+    title: '',
+    playerName: '',
+    buttonText: '',
+    onButtonClick: undefined
+};
+
 
 export default OrgHeader;
