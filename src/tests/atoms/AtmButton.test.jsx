@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
-import AtmButton from '../../components/atoms/AtmButton'; // Asegúrate de que la ruta sea correcta
+import AtmButton from '../../components/atoms/AtmButton'; 
 
 describe('AtmButton', () => {
   test('se renderiza con contenido', () => {
