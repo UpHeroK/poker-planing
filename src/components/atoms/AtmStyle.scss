@@ -184,3 +184,10 @@
       filter: brightness(100%);
     }
 }
+
+.card-text {
+  white-space: nowrap;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  max-width: 100px;
+}

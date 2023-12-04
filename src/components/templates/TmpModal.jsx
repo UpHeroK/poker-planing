@@ -2,8 +2,8 @@ import React from 'react';
 import crossClose from '../../assets/close.svg';
 const TmpModal = ({ header, headerContent, isOpen, onClose, content: ContentComponent, componentProps }) => {
 
-  const closeModal = () => {
-    onClose();
+  const closeModal = (formData) => {
+    onClose(formData);
   }
 
 

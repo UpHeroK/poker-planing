@@ -2,8 +2,8 @@ import React, { useState, useRef } from "react";
 import AtmInput from "../atoms/AtmInput";
 import AtmButton from "../atoms/AtmButton";
 
-const OrgFormCopy = ({ label, content }) => {
-    const [inputValue, setInputValue] = useState("https://poker.com/asd165as4c32168ec4as1"); // Valor por defecto tipo link
+const OrgFormClipboard = ({ label, content }) => {
+    const [inputValue, setInputValue] = useState("https://poker.com/asd165as4c32168ec4as1");
     const inputRef = useRef(null);
 
     const handleInputChange = (event) => {
@@ -27,7 +27,6 @@ const OrgFormCopy = ({ label, content }) => {
     };
 
 
-
     return (
         <form className="org-form">
             <AtmInput
@@ -45,4 +44,4 @@ const OrgFormCopy = ({ label, content }) => {
     );
 };
 
-export default OrgFormCopy;
+export default OrgFormClipboard;

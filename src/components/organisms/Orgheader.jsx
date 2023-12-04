@@ -1,11 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import Ficha from '../../assets/Ficha.svg';
 import AtmButton from '../atoms/AtmButton';
-import TmpModal from "../templates/TmpModal";
-import OrgFormCopy from "./OrgFormCopy";
 
-const OrgHeader = ({ description, title, player, content , openModal }) => {
+const OrgHeader = ({ description, title, playerName, buttonText, onButtonClick }) => {
+    const playerIcon = playerName ? <div className="icon-player">{playerName}</div> : null;
 
     return (
         <div id="header">
@@ -13,13 +11,11 @@ const OrgHeader = ({ description, title, player, content , openModal }) => {
                 <img className='ficha' src={Ficha} alt="Poker-header" />
                 <p>{description}</p>
             </div>
-            <p className="title-header">{title}</p>
+            <h1 className="title-header">{title}</h1>
             <div className="right-header">
-                {player && <div className="icon-player">{player}</div>}
-
-                <AtmButton content={content} customStyle={true} onClick={openModal} />
+                {playerIcon}
+                <AtmButton content={buttonText} customStyle={true} onClick={onButtonClick} />
             </div>
-            
         </div>
     );
 };

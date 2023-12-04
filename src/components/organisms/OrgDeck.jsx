@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import AtmCard from '../atoms/AtmCard';
 
-const OrgDeck = ({ onCardSelect, resetKey, cardValues }) => {
+const OrgDeck = ({ onCardSelect, cardValues }) => {
   const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardClick = (cardValue) => {
@@ -8,22 +9,19 @@ const OrgDeck = ({ onCardSelect, resetKey, cardValues }) => {
     onCardSelect(cardValue);
   };
 
-  useEffect(() => {
-    setSelectedCard(null);
-  }, [resetKey]);
-
   return (
     <div className="deck-container">
       <p>Elije una carta 👇</p>
       <div className="deck-of-cards">
         {cardValues.map((cardValue, index) => (
-          <div
+          <AtmCard
             key={index}
-            className={`player ${selectedCard === cardValue ? 'selected elevate' : ''}`}
-            onClick={() => handleCardClick(cardValue)}
-          >
-            {cardValue}
-          </div>
+            cardValue={cardValue}
+            isSelected={selectedCard === cardValue}
+            showCard={true}
+            isClickable={true}
+            onCardClick={handleCardClick} />
+
         ))}
       </div>
     </div>

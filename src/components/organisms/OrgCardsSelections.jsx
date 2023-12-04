@@ -1,19 +1,23 @@
 import React from 'react';
+import AtmCard from '../atoms/AtmCard';
 
-const OrgCardsSelections = ({ cardSelections, averageCard }) => {
+const OrgCardsSelections = ({ cardSelections = {}, averageCard }) => {
   return (
     <div className="deck-container">
       <div className="deck-of-cards">
         {Object.entries(cardSelections).map(([cardValue, instances], index) => (
-          <div className='cards-selections' key={index}>
-            <div className='player'>{cardValue}</div>
-            <p className='instances'>{instances} {instances === 1 ? 'voto' : 'votos'}</p>
-          </div>
+          <AtmCard 
+            key={index}
+            cardValue={cardValue}
+            isVotingCard={true}
+            instances={instances}
+            showCard={true} 
+          />
         ))}
       </div>
       {averageCard && (
         <div className="result">
-          <p>Average:</p>
+          <p>Promedio:</p>
           <p className='number'>{averageCard}</p>
         </div>
       )}

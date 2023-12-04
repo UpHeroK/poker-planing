@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import AtmLogo from '../atoms/AtmLogo';
 import OrgForm from '../organisms/OrgForm';
-import OrgHeader from '../organisms/Orgheader';
+import AtmLogo from '../atoms/AtmLogo';
+import OrgHeader from '../organisms/OrgHeader';
 
-function NewGame() {
+function NewGamePage() {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -16,30 +16,26 @@ function NewGame() {
         return () => clearTimeout(timer);
     }, []);
 
-    const handleSubmit = () => {
-        const newGame = event.target[0].value
-        localStorage.setItem('game', newGame);
-         navigate("/game");
-    }
     
+    const handleSubmit = (formData) => {
+        console.log(formData);
+        localStorage.setItem('gameName', formData.name);
+        navigate("/game");
+    };
 
     return (
         <div>
             {isLoading ? (
-                <>
-                    <AtmLogo />
-                </>
+                <AtmLogo />
             ) : (
-               <>
-               <OrgHeader description='Crear partida' />
-                <OrgForm label='Nombra la partida'
-                content='Crear partida'
-                radio={false}
-                onSubmit={handleSubmit}/>
-               </>
+                <>
+                    <OrgHeader description='Crear partida' />
+                    <OrgForm onSubmit={handleSubmit} label={'Nombre de la partida'} content={'Crear partida' }
+                     />
+                </>
             )}
         </div>
     );
 }
 
-export default NewGame;
+export default NewGamePage;

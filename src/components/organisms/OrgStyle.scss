@@ -128,7 +128,7 @@
     0% {
         background-color: #26104d;
     }
-    0% {
+    50% {
         background-color: #bcb6c1
     }
     100% {
@@ -155,13 +155,13 @@
 
 .player:hover {
     transform: translate(0px, -5px);
-    animation: colorChange 0.25s ease-in; /* Ajusta la duración según tus preferencias */
+    animation: colorChange 0.25s ease-in; 
     background-color: #BB65FF;
     color: #26104d;
 }
 
 .selected{
-    animation: colorChange 0.25s ease-in !important;/* Ajusta la duración según tus preferencias */
+    animation: colorChange 0.25s ease-in !important;
     background-color: #BB65FF !important;
     box-shadow: 0px 0px 5px 0px #BB65FF !important;
     transition: all 0.25s ease-in-out !important;
